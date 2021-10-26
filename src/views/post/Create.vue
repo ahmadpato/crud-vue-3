@@ -9,29 +9,24 @@
 
                         <form @submit.prevent="store">
                             <div class="form-group">
-                                <label for="name" class="font-weight-bold">USER</label>
-                                <input type="text" class="form-control" v-model="post.name" placeholder="Masukkan Nama User">
+                                <label for="title" class="font-weight-bold">TITLE</label>
+                                <input type="text" class="form-control" v-model="post.title" placeholder="Masukkan Judul Post">
                                 <!-- validation -->
-                                <div v-if="validation.name" class="mt-2 alert alert-danger">
-                                    {{ validation.name[0] }}
+                                <div v-if="validation.title" class="mt-2 alert alert-danger">
+                                    {{ validation.title[0] }}
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label for="job" class="font-weight-bold">JOB</label>
-                                <input type="text" class="form-control" v-model="post.job" placeholder="Masukkan JOB">
+                                <label for="content" class="font-weight-bold">CONTENT</label>
+                                <textarea class="form-control" rows="4" v-model="post.content" placeholder="Masukkan Konten Post"></textarea>
                                 <!-- validation -->
-                                <div v-if="validation.job" class="mt-2 alert alert-danger">
-                                    {{ validation.job[0] }}
+                                <div v-if="validation.content" class="mt-2 alert alert-danger">
+                                    {{ validation.content[0] }}
                                 </div>
                             </div>
-
-                             
-                            <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">SIMPAN</button>
-                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">SIMPAN</button>
                         </form>                        
-
+                        
                     </div>
                 </div>
             </div>
@@ -63,12 +58,12 @@ export default {
         //method store
         function store() {
 
-            let user   = post.user
-            let job = post.job
+            let title   = post.title
+            let content = post.content
 
-            axios.post('https://reqres.in/api/users', {
-                user: user,
-                job: job
+            axios.post('http://127.0.0.1:8000/api/post/', {
+               title: title,
+               content: content
             }).then(() => {
 
                 //redirect ke post index
